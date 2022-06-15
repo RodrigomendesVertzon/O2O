@@ -1,0 +1,33 @@
+﻿@model O2OUI.Models.Configuration
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="formulario">
+    <h6>Nova Configuração</h6>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" class="form border rounded">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IdCL" class="col-form-label">Configuração</label>
+                    <select asp-for="IdCL" class="form-control form-control-sm" asp-items="ViewBag.IdCL"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Valores" class="col-form-label"></label>
+                    <input asp-for="Valores" class="form-control form-control-sm" />
+                    <span asp-validation-for="Valores" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Criar" class="btn btn-outline-success btn-sm" />
+                    <a asp-action="Index" class="btn btn-outline-dark btn-sm">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

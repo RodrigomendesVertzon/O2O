@@ -1,0 +1,49 @@
+﻿@model O2OUI.Models.SdmStatus
+
+@{
+    ViewData["Title"] = "Criar";
+}
+
+@using (Html.BeginForm())
+{
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+}
+
+    <div class="formulario">
+        <h6>Nova Chamada Sdm</h6>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateD" class="form border rounded">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="IdSdm" class="col-form-label"></label>
+                        <select asp-for="IdSdm" class="form-control form-control-sm" asp-items="ViewBag.IdSdm"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Status" class="col-form-label"></label>
+                        <input asp-for="Status" class="form-control form-control-sm" />
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StatusType" class="col-form-label"></label>
+                        <select asp-for="StatusType" class="form-control form-control-sm">
+                            <option value="1">Aberto</option>
+                            <option value="2">Reaberto</option>
+                            <option value="3">Resolvido</option>
+                            <option value="4">Fechado</option>
+                        </select>
+                        <span asp-validation-for="StatusType" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <input type="submit" value="Criar" href='javascript:history.go(-1)' class="btn btn-outline-success btn-sm" />
+                        <a href='javascript:history.go(-1)' class="btn btn-outline-dark btn-sm">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

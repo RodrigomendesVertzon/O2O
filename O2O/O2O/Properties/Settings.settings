@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="O2O.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="O2O_SDM_USD_WebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://servicedesk.vertzon.com.br:8095/axis/services/USD_R11_WebService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

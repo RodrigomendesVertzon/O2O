@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configDb>
+	<ip>servicedesk.vertzon.com.br</ip>
+	<banco>o2o</banco>
+	<porta>1433</porta>
+	<usuario>sa</usuario>
+	<senha>Vtz1317@#</senha>
+</configDb>

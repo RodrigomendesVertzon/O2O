@@ -1,0 +1,2852 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>O2O</name>
+    </assembly>
+    <members>
+        <member name="M:O2O.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,O2O.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:O2O.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:O2O.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:O2O.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:O2O.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:O2O.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:O2O.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:O2O.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:O2O.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:O2O.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,O2O.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,O2O.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(O2O.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:O2O.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:O2O.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},O2O.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:O2O.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:O2O.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleKey.#ctor(O2O.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:O2O.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:O2O.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:O2O.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,O2O.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:O2O.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:O2O.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:O2O.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:O2O.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:O2O.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:O2O.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:O2O.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:O2O.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:O2O.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:O2O.Controllers.ActiveDirectoryController.UpdatePassworSDM(System.String)">
+            <summary>
+            Método de Atualização de senha interna do CA SDM.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.ActiveDirectoryController.AddUserToGroup(System.String,System.String)">
+            <summary>
+            Método de de adição de usuário a um grupo no Microsoft Active Directory
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.ActiveDirectoryController.RemoveUserToGroup(System.String,System.String)">
+            <summary>
+            Método de de adição de remoção de usuário a um grupo no Microsoft Active Directory
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.ActiveDirectoryController.CreateUser(System.String,System.String)">
+            <summary>
+            Método de Criação de usuário no Microsoft Active Directory.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.DateAndTimeController.getHoje">
+            <summary>
+            Método de retorno da data atual
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.DateAndTimeController.DateDiffDays(System.DateTime,System.DateTime)">
+            <summary>
+            Método de retorno da diferença entre duas datas, 
+            devolvendo a quantidade de Dias.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.DateAndTimeController.DateDiffHours(System.DateTime,System.DateTime)">
+            <summary>
+            Método de retorno da diferença entre duas datas, 
+            devolvendo a quantidade de Horas.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.DateAndTimeController.DateDiffMinutes(System.DateTime,System.DateTime)">
+            <summary>
+            Método de retorno da diferença entre duas datas, 
+            devolvendo a quantidade de minutos.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.ExcelController.GetPlan(O2O.Conectores.Excel.Models.QuerySheet)">
+            <summary>
+            Método de inserção é uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.MySQLController.CreateGetSelect(O2O.Conectores.SqlServer.Models.QueryTable)">
+            <summary>
+            Método de retorno de um select para um array de String JSON.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.MySQLController.InsertValuesToTable(O2O.Conectores.SqlServer.Models.InsertTable)">
+            <summary>
+            Método de inserção é uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.MySQLController.UpdateValuesToTable(O2O.Conectores.SqlServer.Models.UpdateTable)">
+            <summary>
+            Método de atualização genérica em uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.MySQLController.ExecProcedure(O2O.Conectores.SqlServer.Models.UpdateTable)">
+            <summary>
+            Método de execução de procedures
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.OracleController.CreateGetSelect(O2O.Conectores.SqlServer.Models.QueryTable)">
+            <summary>
+            Método de retorno de um select para um array de String JSON.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.OracleController.InsertValuesToTable(O2O.Conectores.SqlServer.Models.InsertTable)">
+            <summary>
+            Método de inserção é uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.OracleController.UpdateValuesToTable(O2O.Conectores.SqlServer.Models.UpdateTable)">
+            <summary>
+            Método de atualização genérica em uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.OracleController.ExecProcedure(O2O.Conectores.SqlServer.Models.UpdateTable)">
+            <summary>
+            Método de execução de procedures
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ConsultarUsuarios(System.String)">
+            <summary>
+            Método de retorno da lista do objeto ticket, 
+            onde os tickets estiverem abertos baseado no login do usuário final afetado.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ValidTicket(System.String)">
+            <summary>
+            Método de para validação se o chamado existe baseado no número.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ConsultarUsuariosByPhone(System.String)">
+            <summary>
+            Método de retorno da lista do objeto tickets abertos baseado no telefone do usuário final afetado.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ConsultarCommentsByNumber(System.String)">
+            <summary>
+            Método de retorno da lista do objeto comentário do chamado baseado no número do chamado.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.GetTicketsByRefNum(System.String)">
+            <summary>
+            Método de retorno do objeto ticket baseado no comentário.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.InfoTicketsByLogin(System.String)">
+            <summary>
+            Método de retorno da string da lista de tickets abertos para aquele login.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.InfoTicketsREByLogin(System.String)">
+            <summary>
+            Método de retorno da string da lista de tickets resolvidos para aquele login.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ConsultarUsuariosByRequested(System.String)">
+            <summary>
+            Método de retorno da lista de tickets abertos para aquele telefone.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ValidationsCpf(System.String,System.String)">
+            <summary>
+            Método de retorno boleano informando se o telefone e o CPF são validos na base.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ValidationsNomeMae(System.String,System.String)">
+            <summary>
+            Método de retorno boleano informando se o nome da Mãe e o CPF são validos na base.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.RegisterComment(O2O.Conectores.SDM.Models.Comments)">
+            <summary>
+            Método de registro de comentário através de um objeto comentário.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.ChangeStatusTicketReOpen(O2O.Conectores.SDM.Models.Comments)">
+            <summary>
+            Método de reabertura de chamados 
+            recebendo o objeto commentário para reabertura.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.CreateTicket(O2O.Conectores.SDM.Models.Ticket)">
+            <summary>
+            Método de abertura de chamados 
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SDMController.UpdatePassworSDM(System.String,System.String)">
+            <summary>
+            Método de Atualização de senha interna do CA SDM.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SqlServerController.CreateGetSelect(O2O.Conectores.SqlServer.Models.QueryTable)">
+            <summary>
+            Método de retorno de um select para um array de String JSON.
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SqlServerController.InsertValuesToTable(O2O.Conectores.SqlServer.Models.InsertTable)">
+            <summary>
+            Método de inserção é uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SqlServerController.UpdateValuesToTable(O2O.Conectores.SqlServer.Models.UpdateTable)">
+            <summary>
+            Método de atualização genérica em uma tabela qualquer partindo de um JSON
+            </summary>
+        </member>
+        <member name="M:O2O.Controllers.SqlServerController.ExecProcedure(O2O.Conectores.SqlServer.Models.UpdateTable)">
+            <summary>
+            Método de execução de procedures
+            </summary>
+        </member>
+        <member name="T:O2O.SDM.USD_WebService">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.#ctor">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createObjectCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.addAssetLogCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createLrelRelationshipsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.addMemberToGroupCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.attachChangeToRequestCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.callServerMethodCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.changeStatusCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.clearNotificationCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createActivityLogCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createAssetCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createAssetParentChildRelationshipCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createAttachmentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.removeAttachmentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createChangeOrderCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createIssueCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createWorkFlowTaskCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.deleteWorkFlowTaskCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createRequestCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createTicketCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createQuickTicketCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.closeTicketCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.logCommentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getPolicyInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.detachChangeFromRequestCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.doSelectCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.doQueryCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.escalateCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.freeListHandlesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getAssetExtensionInformationCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getConfigurationModeCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getGroupMemberListValuesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getObjectTypeInformationCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getHandleForUseridCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getAccessTypeForContactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getListValuesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getLrelLengthCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getLrelValuesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getNotificationsForContactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getObjectValuesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getPendingChangeTaskListForContactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getPendingIssueTaskListForContactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getPropertyInfoForCategoryCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getRelatedListCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getRelatedListValuesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getWorkFlowTemplatesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getTaskListValuesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getValidTaskTransitionsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getValidTransitionsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getDependentAttrControlsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.loginCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.loginServiceCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.loginServiceManagedCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.loginWithArtifactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.impersonateCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.logoutCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.notifyContactsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.removeLrelRelationshipsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.removeMemberFromGroupCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.serverStatusCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.updateObjectCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getBopsidCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getArtifactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.attachURLLinkToTicketCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createAttmntCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getDocumentsByIDsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getDecisionTreesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.deleteDocumentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getCategoryCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getStatusesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getBookmarksCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getQuestionsAskedCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getPrioritiesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getDocumentTypesCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getTemplateListCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getWorkflowTemplateListCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.addCommentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.deleteCommentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createDocumentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.modifyDocumentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.rateDocumentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getCommentsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.findContactsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getPermissionGroupsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getContactCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.addBookmarkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.updateRatingCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.doSelectKDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getFolderListCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getFolderInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getAttmntListCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getAttmntInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getRepositoryInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.createFolderCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.faqCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.attmntFolderLinkCountCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.attachURLLinkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.deleteBookmarkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getKDListPerAttmntCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getAttmntListPerKDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.isAttmntLinkedKDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.transferCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.searchCompleted">
+            <remarks/>
+        </member>
+        <member name="E:O2O.SDM.USD_WebService.getDocumentCompleted">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createObject(System.Int32,System.String,System.String[],System.String[],System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createObjectAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createObjectAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addAssetLog(System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addAssetLogAsync(System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addAssetLogAsync(System.Int32,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createLrelRelationships(System.Int32,System.String,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createLrelRelationshipsAsync(System.Int32,System.String,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createLrelRelationshipsAsync(System.Int32,System.String,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addMemberToGroup(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addMemberToGroupAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addMemberToGroupAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachChangeToRequest(System.Int32,System.String,System.String,System.String,System.String[],System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachChangeToRequestAsync(System.Int32,System.String,System.String,System.String,System.String[],System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachChangeToRequestAsync(System.Int32,System.String,System.String,System.String,System.String[],System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.callServerMethod(System.Int32,System.String,System.String,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.callServerMethodAsync(System.Int32,System.String,System.String,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.callServerMethodAsync(System.Int32,System.String,System.String,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.changeStatus(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.changeStatusAsync(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.changeStatusAsync(System.Int32,System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.clearNotification(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.clearNotificationAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.clearNotificationAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createActivityLog(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createActivityLogAsync(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createActivityLogAsync(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAsset(System.Int32,System.String[],System.String[],System.String@,System.String@,System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAssetAsync(System.Int32,System.String[],System.String[],System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAssetAsync(System.Int32,System.String[],System.String[],System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAssetParentChildRelationship(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAssetParentChildRelationshipAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAssetParentChildRelationshipAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAttachment(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAttachmentAsync(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAttachmentAsync(System.Int32,System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeAttachment(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeAttachmentAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeAttachmentAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createChangeOrder(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createChangeOrderAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createChangeOrderAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createIssue(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createIssueAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createIssueAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createWorkFlowTask(System.Int32,System.String[],System.String,System.String,System.String,System.String,System.String[],System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createWorkFlowTaskAsync(System.Int32,System.String[],System.String,System.String,System.String,System.String,System.String[],System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createWorkFlowTaskAsync(System.Int32,System.String[],System.String,System.String,System.String,System.String,System.String[],System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteWorkFlowTask(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteWorkFlowTaskAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteWorkFlowTaskAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createRequest(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createRequestAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createRequestAsync(System.Int32,System.String,System.String[],System.String[],System.String,System.String[],System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createTicket(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@,System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createTicketAsync(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createTicketAsync(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createQuickTicket(System.Int32,System.String,System.String,System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createQuickTicketAsync(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createQuickTicketAsync(System.Int32,System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.closeTicket(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.closeTicketAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.closeTicketAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.logComment(System.Int32,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.logCommentAsync(System.Int32,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.logCommentAsync(System.Int32,System.String,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPolicyInfo(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPolicyInfoAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPolicyInfoAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.detachChangeFromRequest(System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.detachChangeFromRequestAsync(System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.detachChangeFromRequestAsync(System.Int32,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doSelect(System.Int32,System.String,System.String,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doSelectAsync(System.Int32,System.String,System.String,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doSelectAsync(System.Int32,System.String,System.String,System.Int32,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doQuery(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doQueryAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doQueryAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.escalate(System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.escalateAsync(System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.escalateAsync(System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.freeListHandles(System.Int32,System.Nullable{System.Int32}[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.freeListHandlesAsync(System.Int32,System.Nullable{System.Int32}[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.freeListHandlesAsync(System.Int32,System.Nullable{System.Int32}[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAssetExtensionInformation(System.Int32,System.String,System.String[],System.String@,System.String@,System.String@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAssetExtensionInformationAsync(System.Int32,System.String,System.String[],System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAssetExtensionInformationAsync(System.Int32,System.String,System.String[],System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getConfigurationMode(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getConfigurationModeAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getConfigurationModeAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getGroupMemberListValues(System.Int32,System.String,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getGroupMemberListValuesAsync(System.Int32,System.String,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getGroupMemberListValuesAsync(System.Int32,System.String,System.Int32,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getObjectTypeInformation(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getObjectTypeInformationAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getObjectTypeInformationAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getHandleForUserid(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getHandleForUseridAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getHandleForUseridAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAccessTypeForContact(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAccessTypeForContactAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAccessTypeForContactAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getListValues(System.Int32,System.Int32,System.Int32,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getListValuesAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getListValuesAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getLrelLength(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getLrelLengthAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getLrelLengthAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getLrelValues(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getLrelValuesAsync(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getLrelValuesAsync(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getNotificationsForContact(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getNotificationsForContactAsync(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getNotificationsForContactAsync(System.Int32,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getObjectValues(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getObjectValuesAsync(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getObjectValuesAsync(System.Int32,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPendingChangeTaskListForContact(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPendingChangeTaskListForContactAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPendingChangeTaskListForContactAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPendingIssueTaskListForContact(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPendingIssueTaskListForContactAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPendingIssueTaskListForContactAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPropertyInfoForCategory(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPropertyInfoForCategoryAsync(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPropertyInfoForCategoryAsync(System.Int32,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRelatedList(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRelatedListAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRelatedListAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRelatedListValues(System.Int32,System.String,System.String,System.Int32,System.String[],System.String@,System.Int32@)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRelatedListValuesAsync(System.Int32,System.String,System.String,System.Int32,System.String[],System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRelatedListValuesAsync(System.Int32,System.String,System.String,System.Int32,System.String[],System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getWorkFlowTemplates(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getWorkFlowTemplatesAsync(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getWorkFlowTemplatesAsync(System.Int32,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getTaskListValues(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getTaskListValuesAsync(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getTaskListValuesAsync(System.Int32,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getValidTaskTransitions(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getValidTaskTransitionsAsync(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getValidTaskTransitionsAsync(System.Int32,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getValidTransitions(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getValidTransitionsAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getValidTransitionsAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDependentAttrControls(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDependentAttrControlsAsync(System.Int32,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDependentAttrControlsAsync(System.Int32,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.login(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginService(System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginServiceAsync(System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginServiceAsync(System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginServiceManaged(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginServiceManagedAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginServiceManagedAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginWithArtifact(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginWithArtifactAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.loginWithArtifactAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.impersonate(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.impersonateAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.impersonateAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.logout(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.logoutAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.logoutAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.notifyContacts(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String[],System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.notifyContactsAsync(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String[],System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.notifyContactsAsync(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String[],System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeLrelRelationships(System.Int32,System.String,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeLrelRelationshipsAsync(System.Int32,System.String,System.String,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeLrelRelationshipsAsync(System.Int32,System.String,System.String,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeMemberFromGroup(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeMemberFromGroupAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.removeMemberFromGroupAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.serverStatus(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.serverStatusAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.serverStatusAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.updateObject(System.Int32,System.String,System.String[],System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.updateObjectAsync(System.Int32,System.String,System.String[],System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.updateObjectAsync(System.Int32,System.String,System.String[],System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getBopsid(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getBopsidAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getBopsidAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getArtifact(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getArtifactAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getArtifactAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachURLLinkToTicket(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachURLLinkToTicketAsync(System.Int32,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachURLLinkToTicketAsync(System.Int32,System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAttmnt(System.Int32,System.String,System.Int32,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAttmntAsync(System.Int32,System.String,System.Int32,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createAttmntAsync(System.Int32,System.String,System.Int32,System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentsByIDs(System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentsByIDsAsync(System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentsByIDsAsync(System.Int32,System.String,System.String,System.String,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDecisionTrees(System.Int32,System.String,System.String,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDecisionTreesAsync(System.Int32,System.String,System.String,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDecisionTreesAsync(System.Int32,System.String,System.String,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteDocument(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteDocumentAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteDocumentAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getCategory(System.Int32,System.Int32,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getCategoryAsync(System.Int32,System.Int32,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getCategoryAsync(System.Int32,System.Int32,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getStatuses(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getStatusesAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getStatusesAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getBookmarks(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getBookmarksAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getBookmarksAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getQuestionsAsked(System.Int32,System.Int32,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getQuestionsAskedAsync(System.Int32,System.Int32,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getQuestionsAskedAsync(System.Int32,System.Int32,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPriorities(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPrioritiesAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPrioritiesAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentTypes(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentTypesAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentTypesAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getTemplateList(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getTemplateListAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getTemplateListAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getWorkflowTemplateList(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getWorkflowTemplateListAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getWorkflowTemplateListAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addComment(System.Int32,System.String,System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addCommentAsync(System.Int32,System.String,System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addCommentAsync(System.Int32,System.String,System.Int32,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteComment(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteCommentAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteCommentAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createDocument(System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createDocumentAsync(System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createDocumentAsync(System.Int32,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.modifyDocument(System.Int32,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.modifyDocumentAsync(System.Int32,System.Int32,System.String[])">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.modifyDocumentAsync(System.Int32,System.Int32,System.String[],System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.rateDocument(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.rateDocumentAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.rateDocumentAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getComments(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getCommentsAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getCommentsAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.findContacts(System.Int32,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.findContactsAsync(System.Int32,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.findContactsAsync(System.Int32,System.String,System.String,System.String,System.String,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPermissionGroups(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPermissionGroupsAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getPermissionGroupsAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getContact(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getContactAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getContactAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addBookmark(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addBookmarkAsync(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.addBookmarkAsync(System.Int32,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.updateRating(System.Int32,System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.updateRatingAsync(System.Int32,System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.updateRatingAsync(System.Int32,System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doSelectKD(System.Int32,System.String,System.String,System.Boolean,System.Int32,System.String[],System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doSelectKDAsync(System.Int32,System.String,System.String,System.Boolean,System.Int32,System.String[],System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.doSelectKDAsync(System.Int32,System.String,System.String,System.Boolean,System.Int32,System.String[],System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getFolderList(System.Int32,System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getFolderListAsync(System.Int32,System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getFolderListAsync(System.Int32,System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getFolderInfo(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getFolderInfoAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getFolderInfoAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntList(System.Int32,System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntListAsync(System.Int32,System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntListAsync(System.Int32,System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntInfo(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntInfoAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntInfoAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRepositoryInfo(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRepositoryInfoAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getRepositoryInfoAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createFolder(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createFolderAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.createFolderAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.faq(System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.faqAsync(System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.faqAsync(System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attmntFolderLinkCount(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attmntFolderLinkCountAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attmntFolderLinkCountAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachURLLink(System.Int32,System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachURLLinkAsync(System.Int32,System.Int32,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.attachURLLinkAsync(System.Int32,System.Int32,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteBookmark(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteBookmarkAsync(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.deleteBookmarkAsync(System.Int32,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getKDListPerAttmnt(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getKDListPerAttmntAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getKDListPerAttmntAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntListPerKD(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntListPerKDAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getAttmntListPerKDAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.isAttmntLinkedKD(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.isAttmntLinkedKDAsync(System.Int32,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.isAttmntLinkedKDAsync(System.Int32,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.transfer(System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.transferAsync(System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.transferAsync(System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.search(System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.searchAsync(System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.searchAsync(System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocument(System.Int32,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentAsync(System.Int32,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.getDocumentAsync(System.Int32,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:O2O.SDM.USD_WebService.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.ListResult">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.ListResult.listHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.ListResult.listLength">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createObjectCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createObjectCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createObjectCompletedEventArgs.createObjectResult">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createObjectCompletedEventArgs.newHandle">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.addAssetLogCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createLrelRelationshipsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.addMemberToGroupCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attachChangeToRequestCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attachChangeToRequestCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.attachChangeToRequestCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.callServerMethodCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.callServerMethodCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.callServerMethodCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.changeStatusCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.changeStatusCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.changeStatusCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.clearNotificationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.clearNotificationCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.clearNotificationCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createActivityLogCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createActivityLogCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createActivityLogCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAssetCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAssetCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAssetCompletedEventArgs.createAssetResult">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAssetCompletedEventArgs.newAssetHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAssetCompletedEventArgs.newExtensionHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAssetCompletedEventArgs.newExtensionName">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAssetParentChildRelationshipCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAssetParentChildRelationshipCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAssetParentChildRelationshipCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAttachmentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAttachmentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAttachmentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.removeAttachmentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.removeAttachmentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.removeAttachmentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createChangeOrderCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createChangeOrderCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createChangeOrderCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createChangeOrderCompletedEventArgs.newChangeHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createChangeOrderCompletedEventArgs.newChangeNumber">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createIssueCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createIssueCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createIssueCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createIssueCompletedEventArgs.newIssueHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createIssueCompletedEventArgs.newIssueNumber">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createWorkFlowTaskCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createWorkFlowTaskCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createWorkFlowTaskCompletedEventArgs.createWorkFlowTaskResult">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createWorkFlowTaskCompletedEventArgs.newHandle">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteWorkFlowTaskCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createRequestCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createRequestCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createRequestCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createRequestCompletedEventArgs.newRequestHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createRequestCompletedEventArgs.newRequestNumber">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createTicketCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createTicketCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createTicketCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createTicketCompletedEventArgs.newTicketHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createTicketCompletedEventArgs.newTicketNumber">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createTicketCompletedEventArgs.returnUserData">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createTicketCompletedEventArgs.returnApplicationData">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createQuickTicketCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createQuickTicketCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createQuickTicketCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createQuickTicketCompletedEventArgs.newTicketHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createQuickTicketCompletedEventArgs.newTicketNumber">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.closeTicketCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.closeTicketCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.closeTicketCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.logCommentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPolicyInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPolicyInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getPolicyInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.detachChangeFromRequestCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.detachChangeFromRequestCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.detachChangeFromRequestCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.doSelectCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.doSelectCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.doSelectCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.doQueryCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.doQueryCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.doQueryCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.escalateCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.escalateCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.escalateCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.freeListHandlesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAssetExtensionInformationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAssetExtensionInformationCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAssetExtensionInformationCompletedEventArgs.getAssetExtInfoResult">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAssetExtensionInformationCompletedEventArgs.extensionHandle">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAssetExtensionInformationCompletedEventArgs.extensionName">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getConfigurationModeCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getConfigurationModeCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getConfigurationModeCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getGroupMemberListValuesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getGroupMemberListValuesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getGroupMemberListValuesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getObjectTypeInformationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getObjectTypeInformationCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getObjectTypeInformationCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getHandleForUseridCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getHandleForUseridCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getHandleForUseridCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAccessTypeForContactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAccessTypeForContactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAccessTypeForContactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getListValuesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getListValuesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getListValuesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getLrelLengthCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getLrelLengthCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getLrelLengthCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getLrelValuesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getLrelValuesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getLrelValuesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getNotificationsForContactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getNotificationsForContactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getNotificationsForContactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getObjectValuesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getObjectValuesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getObjectValuesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPendingChangeTaskListForContactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPendingChangeTaskListForContactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getPendingChangeTaskListForContactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPendingIssueTaskListForContactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPendingIssueTaskListForContactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getPendingIssueTaskListForContactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPropertyInfoForCategoryCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPropertyInfoForCategoryCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getPropertyInfoForCategoryCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getRelatedListCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getRelatedListCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getRelatedListCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getRelatedListValuesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getRelatedListValuesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getRelatedListValuesCompletedEventArgs.getRelatedListValuesResult">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getRelatedListValuesCompletedEventArgs.numRowsFound">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getWorkFlowTemplatesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getWorkFlowTemplatesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getWorkFlowTemplatesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getTaskListValuesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getTaskListValuesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getTaskListValuesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getValidTaskTransitionsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getValidTaskTransitionsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getValidTaskTransitionsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getValidTransitionsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getValidTransitionsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getValidTransitionsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDependentAttrControlsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDependentAttrControlsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getDependentAttrControlsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.loginCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginServiceCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginServiceCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.loginServiceCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginServiceManagedCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginServiceManagedCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.loginServiceManagedCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginWithArtifactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.loginWithArtifactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.loginWithArtifactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.impersonateCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.impersonateCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.impersonateCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.logoutCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.notifyContactsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.notifyContactsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.notifyContactsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.removeLrelRelationshipsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.removeMemberFromGroupCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.serverStatusCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.serverStatusCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.serverStatusCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.updateObjectCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.updateObjectCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.updateObjectCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getBopsidCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getBopsidCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getBopsidCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getArtifactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getArtifactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getArtifactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attachURLLinkToTicketCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attachURLLinkToTicketCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.attachURLLinkToTicketCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAttmntCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createAttmntCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createAttmntCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDocumentsByIDsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDocumentsByIDsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getDocumentsByIDsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDecisionTreesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDecisionTreesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getDecisionTreesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteDocumentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteDocumentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.deleteDocumentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getCategoryCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getCategoryCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getCategoryCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getStatusesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getStatusesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getStatusesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getBookmarksCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getBookmarksCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getBookmarksCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getQuestionsAskedCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getQuestionsAskedCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getQuestionsAskedCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPrioritiesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPrioritiesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getPrioritiesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDocumentTypesCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDocumentTypesCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getDocumentTypesCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getTemplateListCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getTemplateListCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getTemplateListCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getWorkflowTemplateListCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getWorkflowTemplateListCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getWorkflowTemplateListCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.addCommentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.addCommentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.addCommentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteCommentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteCommentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.deleteCommentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createDocumentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createDocumentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createDocumentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.modifyDocumentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.modifyDocumentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.modifyDocumentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.rateDocumentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.rateDocumentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.rateDocumentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getCommentsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getCommentsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getCommentsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.findContactsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.findContactsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.findContactsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPermissionGroupsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getPermissionGroupsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getPermissionGroupsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getContactCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getContactCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getContactCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.addBookmarkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.addBookmarkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.addBookmarkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.updateRatingCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.updateRatingCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.updateRatingCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.doSelectKDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.doSelectKDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.doSelectKDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getFolderListCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getFolderListCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getFolderListCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getFolderInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getFolderInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getFolderInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAttmntListCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAttmntListCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAttmntListCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAttmntInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAttmntInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAttmntInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getRepositoryInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getRepositoryInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getRepositoryInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createFolderCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.createFolderCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.createFolderCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.faqCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.faqCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.faqCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attmntFolderLinkCountCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attmntFolderLinkCountCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.attmntFolderLinkCountCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attachURLLinkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.attachURLLinkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.attachURLLinkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteBookmarkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.deleteBookmarkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.deleteBookmarkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getKDListPerAttmntCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getKDListPerAttmntCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getKDListPerAttmntCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAttmntListPerKDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getAttmntListPerKDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getAttmntListPerKDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.isAttmntLinkedKDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.isAttmntLinkedKDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.isAttmntLinkedKDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.transferCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.transferCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.transferCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.searchCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.searchCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.searchCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDocumentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:O2O.SDM.getDocumentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:O2O.SDM.getDocumentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+    </members>
+</doc>

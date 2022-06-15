@@ -1,0 +1,34 @@
+﻿@model IEnumerable<O2OUI.Models.Seguranca.CheckLicense>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="tabela">
+    <div class="container">
+
+        @if (TempData["Confimacao"] != null)
+        {
+            <h6 class="alert-success">@TempData["Confirmacao"]</h6>
+        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Data da Checagem
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataDeChecagem)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

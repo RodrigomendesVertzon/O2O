@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "O2O - Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4"><img class="img-fluid" src="~/Imagens/Logo.png" alt="Card image cap">Orquestrador de Integrações</h1>
+
+</div>
+<div class="text-left">
+    <h5>Conectores</h5>
+</div>
+<div class="card-deck">
+    <div class="card">
+        <div class="card-img">
+            <a asp-action="Index" asp-controller="SqlConectors"><img class="home-img" src="~/Imagens/Sql.png" alt="Card image cap"></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <a class="not-active" asp-action="Index" asp-controller="SdmConectors"><img class="home-img" src="~/Imagens/SDM.png" alt="Card image cap"></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <a class="not-active" asp-action="Index" asp-controller="OracleConectors"><img class="home-img" src="~/Imagens/Oracle.png" alt="Card image cap"></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <a class="not-active" asp-action="Index" asp-controller="MySqlConectors"><img class="home-img" src="~/Imagens/Mysql.png" alt="Card image cap"></a>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="card-deck">
+    <div class="card">
+        <div class="card-img">
+            <a asp-action="Index" asp-controller="ExcelConectors"><img class="home-img" src="~/Imagens/Excel.png" alt="Card image cap"></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <a class="not-active" asp-action="Index" asp-controller="ADConectors"><img class="home-img" src="~/Imagens/AD.png" alt="Card image cap"></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <a class="not-active" asp-action="Index" asp-controller="SNowConectors"><img class="home-img" src="~/Imagens/Snow.png" alt="Card image cap"></a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <a asp-action="Index" asp-controller="SoapConectors"><img class="home-img" src="~/Imagens/Soap.png" alt="Card image cap"></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<O2OUI.Models.SdmStatus>
+<div class="panel panel-default">
+    <div class="panel-heading">Resolvido</div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Conector SDM
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        Tipo de Status
+                    </th>
+                    <th>
+                        Opções
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @if (item.StatusType == StatusTypes.Resolvido)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SdmConector.Identificador)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusType)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm">Editar</a> |
+                                <a class="btn btn-outline-danger btn-sm" onclick="ExibirModal(@item.Id, '@item.Status')">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+<script>
+    function ExibirModal(id, nome) {
+        $(".nome")[0].innerHtml = nome;
+
+        $(".modal").modal();
+
+        $(".btnExcluir").on('click', function () {
+            $.ajax({
+                url: "SdmStatus/Delete",
+                method: "POST",
+                data: { id: id },
+                success: function (data) {
+                    $(".modal").modal('hide');
+                    location.reload(true);
+                }
+            });
+        });
+    }
+</script>
+}
